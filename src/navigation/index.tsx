@@ -103,20 +103,23 @@ function BottomTabNavigator({ navigation }: any) {
       initialRouteName="Home"
       screenOptions={{
         title: "Clonitter",
+        // headerTitleAlign: "center",
+        headerTitleStyle: {
+          fontSize: 25,
+          fontWeight: "900",
+          color: "#0063D1",
+        },
         headerStyle: {
           backgroundColor: "#000",
-          borderBottomWidth: 1,
+          borderBottomWidth: 0.5,
           borderBottomColor: "#6A6F74",
         },
-        headerTitleStyle: {
-          fontSize: 22,
-        },
-        tabBarActiveTintColor: "#E2E3E4",
+        tabBarActiveTintColor: "#0063D1",
         tabBarShowLabel: false,
         tabBarStyle: {
           height: 50,
           backgroundColor: "#000",
-          borderTopWidth: 1,
+          borderTopWidth: 0.5,
           borderTopColor: "#6A6F74",
         },
       }}

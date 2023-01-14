@@ -1,13 +1,13 @@
 export interface IUser {
   usr_user_name: string;
   usr_name: string;
-  profile: {
+  profile?: {
     prf_image: string;
     prf_bio: string;
     prf_followers: number;
     prf_followings: number;
   }
-  posts: IPost[];
+  posts?: IPost[];
 }
 
 export interface IPost {

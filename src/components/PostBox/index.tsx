@@ -5,7 +5,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import moment from "moment";
 import "moment/locale/pt-br";
 import { styles } from "./style";
-import { IPost, IUser } from "../../utils/interfaces";
+import { IPost } from "../../utils/interfaces";
 
 moment.updateLocale("pt-br", {
   relativeTime: {
@@ -42,9 +42,9 @@ export const PostBox = ({
       <Image
         style={{ width: 60, height: 60, borderRadius: 9999 }}
         source={{
-          uri:
-            user?.profile?.prf_image &&
-            `${REACT_APP_IMAGE_URL}/${user?.profile?.prf_image}`,
+          uri: user?.profile?.prf_image
+            ? `${REACT_APP_IMAGE_URL}/${user?.profile?.prf_image}`
+            : "https://via.placeholder.com/60",
         }}
       />
 
