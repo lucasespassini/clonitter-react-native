@@ -13,13 +13,13 @@ import EventSource, { EventSourceListener } from "react-native-sse";
 import { REACT_APP_BASE_URL } from "@env";
 import { IPost } from "../utils/interfaces";
 import { api } from "../provider/api";
+import { SpeedDial } from "../components/SpeedDial";
 
 export const HomeScreen = ({ navigation }: any) => {
   const [posts, setPosts] = useState<any[]>([]);
   const [page, setPage] = useState(1);
-  const [hasMorePosts, sethHasMorePosts] = useState(true);
+  const [hasMorePosts, setHasMorePosts] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
-  const [isFocused, setIsFocused] = useState(true);
 
   async function getPosts() {
     const value = await AsyncStorage.getItem("@Clonitter:userdata");
@@ -30,33 +30,27 @@ export const HomeScreen = ({ navigation }: any) => {
     const jsonData = JSON.parse(value);
 
     const { data } = await api.get(
-      `${REACT_APP_BASE_URL}/post/user/${jsonData.payload.usr_user_name}/followings`,
+      `/post/user/${jsonData.payload.usr_user_name}/followings`,
       {
         params: { page },
       }
     );
 
     if (!data[0]) {
-      sethHasMorePosts(false);
+      setHasMorePosts(false);
     }
 
-    setPosts((prev) => [...prev, ...data]);
+    if (!posts[0]) {
+      setPosts((prev) => [...prev, ...data]);
+    } else {
+    }
   }
 
   useEffect(() => {
     (async () => {
       await getPosts();
     })();
-    navigation.addListener("focus", () => {
-      console.log(posts[0]?.pst_uuid);
-    });
-  }, [page, navigation]);
-
-  useEffect(() => {
-    navigation.addListener("focus", () => {
-      console.log(posts[0]?.pst_uuid);
-    });
-  }, [posts, navigation]);
+  }, [page]);
 
   const renderItem = useCallback(({ item }: ListRenderItemInfo<IPost>) => {
     return <PostBox {...item} />;
@@ -74,6 +68,7 @@ export const HomeScreen = ({ navigation }: any) => {
               marginVertical: 15,
               color: "#6A6F74",
               textAlign: "center",
+              fontWeight: "900",
             }}
           >
             ·
@@ -104,6 +99,7 @@ export const HomeScreen = ({ navigation }: any) => {
         }}
         onEndReachedThreshold={0.1}
       />
+      <SpeedDial />
     </>
   );
 };

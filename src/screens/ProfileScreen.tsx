@@ -24,16 +24,18 @@ export const ProfileScreen = ({ navigation }: any) => {
   }, []);
 
   useEffect(() => {
-      navigation.addListener("focus", () => {
-        async function getUserProfile() {
-          const value = await AsyncStorage.getItem("@Clonitter:userdata");
-          if (!value) return;
-          const jsonData = JSON.parse(value);
-          const { data } = await api.get(`/user/${jsonData.payload.usr_user_name}`);
-          setUserProfile(data);
-        }
-        getUserProfile();
-      });
+    navigation.addListener("focus", () => {
+      async function getUserProfile() {
+        const value = await AsyncStorage.getItem("@Clonitter:userdata");
+        if (!value) return;
+        const jsonData = JSON.parse(value);
+        const { data } = await api.get(
+          `/user/${jsonData.payload.usr_user_name}`
+        );
+        setUserProfile(data);
+      }
+      getUserProfile();
+    });
   }, [navigation]);
 
   function ProfileComponent() {
@@ -103,9 +105,9 @@ export const ProfileScreen = ({ navigation }: any) => {
               backgroundColor: "#000",
             }}
             source={{
-              uri:
-                userProfile?.profile?.prf_background &&
-                `${REACT_APP_BG_URL}/${userProfile.profile.prf_background}`,
+              uri: userProfile?.profile?.prf_background
+                ? `${REACT_APP_BG_URL}/${userProfile.profile.prf_background}`
+                : "https://via.placeholder.com/60",
             }}
           />
           <View
@@ -126,9 +128,9 @@ export const ProfileScreen = ({ navigation }: any) => {
                 borderRadius: 9999,
               }}
               source={{
-                uri:
-                  userProfile?.profile?.prf_image &&
-                  `${REACT_APP_PRF_URL}/${userProfile.profile.prf_image}`,
+                uri: userProfile?.profile?.prf_image
+                  ? `${REACT_APP_PRF_URL}/${userProfile.profile.prf_image}`
+                  : "https://via.placeholder.com/60",
               }}
             />
             <Button

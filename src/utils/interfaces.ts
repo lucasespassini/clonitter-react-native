@@ -16,5 +16,5 @@ export interface IPost {
   pst_content: string;
   pst_createdAt: string;
   user: IUser;
-  comments: any[];
+  comments: any[] | string;
 }

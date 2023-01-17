@@ -15,7 +15,7 @@ export const LoginScreen = ({ navigation }: any) => {
 
   const submit = async () => {
     const data = await Login(loginData.login, loginData.password);
-    if (data.errors) return;
+    if (data?.errors) return;
     api.defaults.headers.Authorization = `Bearer ${data.token}`;
     const jsonData = JSON.stringify(data);
     await AsyncStorage.setItem("@Clonitter:userdata", jsonData);

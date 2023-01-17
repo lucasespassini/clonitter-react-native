@@ -75,17 +75,23 @@ export const PostBox = ({
               size={17}
               style={styles.postInfoIcon}
             />
-            <Text style={{ marginLeft: 8, color: "#6A6F74" }}>{comments?.length}</Text>
+            <Text style={{ marginLeft: 8, color: "#6A6F74" }}>
+              {comments !== "0" && comments}
+            </Text>
           </View>
 
           <View style={{ alignItems: "center", flexDirection: "row" }}>
             <FontAwesome5 name="reply" size={17} style={styles.postInfoIcon} />
-            <Text style={{ marginLeft: 8, color: "#6A6F74" }}>{''}</Text>
+            <Text style={{ marginLeft: 8, color: "#6A6F74" }}>
+              {comments !== "0" && comments}
+            </Text>
           </View>
 
           <View style={{ alignItems: "center", flexDirection: "row" }}>
             <FontAwesome5 name="heart" size={17} style={styles.postInfoIcon} />
-            <Text style={{ marginLeft: 8, color: "#6A6F74" }}>{''}</Text>
+            <Text style={{ marginLeft: 8, color: "#6A6F74" }}>
+              {comments !== "0" && comments}
+            </Text>
           </View>
         </View>
       </View>

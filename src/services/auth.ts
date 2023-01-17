@@ -1,6 +1,7 @@
 import { api } from "../provider/api"
 
 export const Login = async (login: string, password: string) => {
+  console.log({ login, password })
   if (!login) return { error_email: 'Email inválido!' }
   if (!password) return { error_password: 'Senha inválida!' }
 
@@ -12,7 +13,8 @@ export const Login = async (login: string, password: string) => {
 
     return data
   } catch (error: any) {
-    return error.respose.data
+    console.log(error)
+    return error?.respose?.data
   }
 }
 
