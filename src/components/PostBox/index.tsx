@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View, Image } from "react-native";
-import { REACT_APP_IMAGE_URL } from "@env";
+import { REACT_APP_PRF_URL } from "@env";
 import { FontAwesome5 } from "@expo/vector-icons";
 import moment from "moment";
 import "moment/locale/pt-br";
@@ -22,7 +22,7 @@ moment.updateLocale("pt-br", {
     M: "1m",
     MM: "%dm",
     y: "1 ano",
-    yy: "%d ano",
+    yy: "%d anos",
   },
 });
 
@@ -30,6 +30,7 @@ export const PostBox = ({
   pst_uuid,
   pst_content,
   pst_createdAt,
+  comments,
   user,
 }: IPost) => {
   return (
@@ -43,7 +44,7 @@ export const PostBox = ({
         style={{ width: 60, height: 60, borderRadius: 9999 }}
         source={{
           uri: user?.profile?.prf_image
-            ? `${REACT_APP_IMAGE_URL}/${user?.profile?.prf_image}`
+            ? `${REACT_APP_PRF_URL}/${user?.profile?.prf_image}`
             : "https://via.placeholder.com/60",
         }}
       />
@@ -74,17 +75,17 @@ export const PostBox = ({
               size={17}
               style={styles.postInfoIcon}
             />
-            <Text style={{ marginLeft: 8, color: "#6A6F74" }}>0</Text>
+            <Text style={{ marginLeft: 8, color: "#6A6F74" }}>{comments?.length}</Text>
           </View>
 
           <View style={{ alignItems: "center", flexDirection: "row" }}>
             <FontAwesome5 name="reply" size={17} style={styles.postInfoIcon} />
-            <Text style={{ marginLeft: 8, color: "#6A6F74" }}>0</Text>
+            <Text style={{ marginLeft: 8, color: "#6A6F74" }}>{''}</Text>
           </View>
 
           <View style={{ alignItems: "center", flexDirection: "row" }}>
             <FontAwesome5 name="heart" size={17} style={styles.postInfoIcon} />
-            <Text style={{ marginLeft: 8, color: "#6A6F74" }}>0</Text>
+            <Text style={{ marginLeft: 8, color: "#6A6F74" }}>{''}</Text>
           </View>
         </View>
       </View>

@@ -3,6 +3,7 @@ export interface IUser {
   usr_name: string;
   profile?: {
     prf_image: string;
+    prf_background: string;
     prf_bio: string;
     prf_followers: number;
     prf_followings: number;

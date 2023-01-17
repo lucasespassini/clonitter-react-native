@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 import { Image, Pressable } from "react-native";
 
 import LinkingConfiguration from "./LinkingConfiguration";
-import { REACT_APP_IMAGE_URL } from "@env";
+import { REACT_APP_PRF_URL } from "@env";
 import { HomeScreen } from "../screens/HomeScreen";
 import { LoginScreen } from "../screens/LoginScreen";
 import { ProfileScreen } from "../screens/ProfileScreen";
@@ -140,7 +140,7 @@ function BottomTabNavigator({ navigation }: any) {
               source={{
                 uri:
                   user?.profile?.prf_image &&
-                  `${REACT_APP_IMAGE_URL}/${user?.profile?.prf_image}`,
+                  `${REACT_APP_PRF_URL}/${user?.profile?.prf_image}`,
               }}
             />
           ),
